@@ -16,6 +16,9 @@ signer = get_signer()
 
 
 class AssetUser(models.Model):
+    """
+    资产用户
+    """
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=128, unique=True, verbose_name=_('Name'))
     username = models.CharField(max_length=128, verbose_name=_('Username'))

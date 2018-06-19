@@ -12,18 +12,21 @@ from .backends.command.models import AbstractSessionCommand
 
 
 class Terminal(models.Model):
+    """
+    连接
+    """
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=32, verbose_name=_('Name'))
-    remote_addr = models.CharField(max_length=128, verbose_name=_('Remote Address'))
-    ssh_port = models.IntegerField(verbose_name=_('SSH Port'), default=2222)
-    http_port = models.IntegerField(verbose_name=_('HTTP Port'), default=5000)
+    remote_addr = models.CharField(max_length=128, verbose_name=_('Remote Address'))    # 地址
+    ssh_port = models.IntegerField(verbose_name=_('SSH Port'), default=2222)    # ssh端口
+    http_port = models.IntegerField(verbose_name=_('HTTP Port'), default=5000)  # http端口
     command_storage = models.CharField(max_length=128, verbose_name=_("Command storage"), default='default')
     replay_storage = models.CharField(max_length=128, verbose_name=_("Replay storage"), default='default')
     user = models.OneToOneField(User, related_name='terminal', verbose_name='Application User', null=True, on_delete=models.CASCADE)
     is_accepted = models.BooleanField(default=False, verbose_name='Is Accepted')
     is_deleted = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
-    comment = models.TextField(blank=True, verbose_name=_('Comment'))
+    comment = models.TextField(blank=True, verbose_name=_('Comment'))   # 描述
 
     @property
     def is_active(self):
@@ -94,10 +97,13 @@ class Terminal(models.Model):
 
 
 class Status(models.Model):
+    """
+    状态
+    """
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     session_online = models.IntegerField(verbose_name=_("Session Online"), default=0)
-    cpu_used = models.FloatField(verbose_name=_("CPU Usage"))
-    memory_used = models.FloatField(verbose_name=_("Memory Used"))
+    cpu_used = models.FloatField(verbose_name=_("CPU Usage"))       # cpu使用率
+    memory_used = models.FloatField(verbose_name=_("Memory Used"))  # 内存使用率
     connections = models.IntegerField(verbose_name=_("Connections"))
     threads = models.IntegerField(verbose_name=_("Threads"))
     boot_time = models.FloatField(verbose_name=_("Boot Time"))

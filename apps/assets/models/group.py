@@ -16,6 +16,9 @@ logger = logging.getLogger(__name__)
 
 
 class AssetGroup(models.Model):
+    """
+    资产组
+    """
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=64, unique=True, verbose_name=_('Name'))
     created_by = models.CharField(max_length=32, null=True, blank=True, verbose_name=_('Created by'))
