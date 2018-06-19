@@ -8,6 +8,7 @@ from common.utils import date_expired_default
 
 
 class AssetPermission(models.Model):
+    """资产权限"""
     from users.models import User, UserGroup
     from assets.models import Asset, AssetGroup, SystemUser, Cluster
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)

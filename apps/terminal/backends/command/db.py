@@ -7,6 +7,9 @@ from .base import CommandBase
 
 
 class CommandStore(CommandBase):
+    """
+    命令存储
+    """
 
     def __init__(self, params):
         from terminal.models import Command
