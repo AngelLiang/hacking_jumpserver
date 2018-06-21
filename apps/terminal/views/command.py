@@ -16,6 +16,7 @@ common_storage = get_multi_command_store()
 
 
 class CommandListView(DatetimeSearchMixin, AdminUserRequiredMixin, ListView):
+    """命令列表视图"""
     model = Command
     template_name = "terminal/command_list.html"
     context_object_name = 'command_list'

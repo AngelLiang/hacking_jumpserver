@@ -8,6 +8,7 @@ TYPE_ENGINE_MAPPING = {
 
 
 def get_command_store():
+    """获取命令存储"""
     params = settings.COMMAND_STORAGE
     engine_class = import_module(params['ENGINE'])
     storage = engine_class.CommandStore(params)
@@ -15,6 +16,7 @@ def get_command_store():
 
 
 def get_terminal_command_store():
+    """获取terminal命令存储"""
     storage_list = {}
     for name, params in settings.TERMINAL_COMMAND_STORAGE.items():
         tp = params['TYPE']

@@ -15,17 +15,19 @@ class CommandStore(CommandBase, ESStore):
         return ESStore.save(self, command)
 
     def bulk_save(self, commands):
+        """批量保存"""
         return ESStore.bulk_save(self, commands)
 
     def filter(self, date_from=None, date_to=None,
                user=None, asset=None, system_user=None,
                input=None, session=None):
-
+        """过滤"""
         data = ESStore.filter(
             self, date_from=date_from, date_to=date_to,
             user=user, asset=asset, system_user=system_user,
             input=input, session=session
         )
+        # 从多键字典从提取数据并返回
         return AbstractSessionCommand.from_multi_dict(
             [item["_source"] for item in data["hits"] if item]
         )
@@ -33,6 +35,7 @@ class CommandStore(CommandBase, ESStore):
     def count(self, date_from=None, date_to=None,
               user=None, asset=None, system_user=None,
               input=None, session=None):
+        """统计"""
         amount = ESStore.count(
             self, date_from=date_from, date_to=date_to,
             user=user, asset=asset, system_user=system_user,

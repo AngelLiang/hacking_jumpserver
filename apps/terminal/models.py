@@ -12,9 +12,7 @@ from .backends.command.models import AbstractSessionCommand
 
 
 class Terminal(models.Model):
-    """
-    连接
-    """
+    """连接"""
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     name = models.CharField(max_length=32, verbose_name=_('Name'))
     remote_addr = models.CharField(max_length=128, verbose_name=_('Remote Address'))    # 地址
@@ -97,9 +95,7 @@ class Terminal(models.Model):
 
 
 class Status(models.Model):
-    """
-    状态
-    """
+    """状态"""
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     session_online = models.IntegerField(verbose_name=_("Session Online"), default=0)
     cpu_used = models.FloatField(verbose_name=_("CPU Usage"))       # cpu使用率
@@ -119,6 +115,7 @@ class Status(models.Model):
 
 
 class Session(models.Model):
+    """会话"""
     LOGIN_FROM_CHOICES = (
         ('ST', 'SSH Terminal'),
         ('WT', 'Web Terminal'),
@@ -147,6 +144,7 @@ class Session(models.Model):
 
 
 class Task(models.Model):
+    """任务"""
     NAME_CHOICES = (
         ("kill_session", "Kill Session"),
     )
@@ -164,7 +162,7 @@ class Task(models.Model):
 
 
 class Command(AbstractSessionCommand):
-
+    """命令"""
     class Meta:
         db_table = "terminal_command"
         ordering = ('-timestamp',)

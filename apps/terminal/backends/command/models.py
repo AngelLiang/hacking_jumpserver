@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class AbstractSessionCommand(models.Model):
+    """抽象Session命令model"""
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     user = models.CharField(max_length=64, db_index=True, verbose_name=_("User"))
     asset = models.CharField(max_length=128, db_index=True, verbose_name=_("Asset"))
@@ -20,6 +21,7 @@ class AbstractSessionCommand(models.Model):
 
     @classmethod
     def from_dict(cls, d):
+        """从字典中初始化"""
         self = cls()
         for k, v in d.items():
             setattr(self, k, v)
@@ -27,6 +29,7 @@ class AbstractSessionCommand(models.Model):
 
     @classmethod
     def from_multi_dict(cls, l):
+        """从多键字典初始化"""
         commands = []
         for d in l:
             command = cls.from_dict(d)
@@ -34,6 +37,7 @@ class AbstractSessionCommand(models.Model):
         return commands
 
     def to_dict(self):
+        """转换成字典"""
         d = {}
         for field in self._meta.fields:
             d[field.name] = getattr(self, field.name)
