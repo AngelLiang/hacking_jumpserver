@@ -3,6 +3,7 @@ import abc
 
 
 class CommandBase(object):
+    """抽象类"""
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod

@@ -162,7 +162,7 @@ class Task(models.Model):
 
 
 class Command(AbstractSessionCommand):
-    """命令"""
+    """命令model"""
     class Meta:
         db_table = "terminal_command"
         ordering = ('-timestamp',)
